@@ -11,11 +11,11 @@ let compression = require('compression');
 let helmet = require('helmet');
 
 let app = express();
-
 //Set up mongoose connection
 let mongoose = require('mongoose');
-let mongoDB = "mongodb+srv://Locallibrary:1307nicolaium@cluster0.zk6jt.mongodb.net/local_library?retryWrites=true&w=majority";
-mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
+// Set up mongoose connection
+let dev_db_url = "mongodb+srv://Locallibrary:1307nicolaium@cluster0.zk6jt.mongodb.net/local_library?retryWrites=true&w=majority"
+let mongoDB = process.env.MONGODB_URI || dev_db_url;
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
